@@ -3,8 +3,9 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
 	<script src="https://apis.google.com/js/api:client.js"></script>
 	<script type="text/javascript" src="js/authenticate.js" ></script>
-	<script type="text/javascript" src="js/chartAPI.js" ></script>
+	<script type="text/javascript" src="js/chart_api.js" ></script>
 	<script type="text/javascript" src="js/chart.js" ></script>
+	<script type="text/javascript" src="js/load_index.js" ></script>
 
 	<link rel="stylesheet" type="text/css" href="style/boilerplate.css">  </head>
 <body>
@@ -22,38 +23,5 @@
 	<script>startApp();</script>
 	
 	<canvas id="canvas" height="450" width="450"></canvas>
-	
-	<script>
-		var pieData = [
-			{
-				value : 30,
-				color : "#F38630",
-				label : 'Sleep',
-				labelColor : 'white',
-			},
-			{
-				value : 30,
-				color : "#F34353",
-				label : 'Sleep',
-				labelColor : 'white',
-			},
-			{
-				value : 30,
-				color : "#F37364",
-				label : 'SleepHej',
-				labelColor : 'blue',
-			}
-
-		];
-
-		var config =  { 		               
-			animationSteps: 100,
-			animationEasing: 'easeInOutQuart',
-			labelFontSize: 20,
-			animateScale: true,
-			segmentStrokeWidth: 20,
-		}
-		displayPieChart(pieData,config,"canvas")
-	</script>
 </body>
 </html>
