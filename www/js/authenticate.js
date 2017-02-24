@@ -22,10 +22,6 @@ auth2.attachClickHandler(element, {},
 	});
 }
 
-var revokeAllScopes = function() {
-	auth2.disconnect();
-}
-
 
 
 
