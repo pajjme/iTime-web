@@ -1,4 +1,6 @@
 window.onload = function() {
+
+	startApp();
 	var pieData = [
 		{
 			value : 30,
