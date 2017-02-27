@@ -9,6 +9,7 @@ var googleUser = {};
         //scope: 'additional_scope'
       });
       attachSignin(document.getElementById('customBtn'));
+      auth2.attachClickHandler(document.getElementById('customBtn2'), {}, function() {auth2.disconnect();}, function() {window.alert(0)}); 
     });
   };
 
