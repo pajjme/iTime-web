@@ -4,7 +4,11 @@
 	<link rel="stylesheet" type="text/css" href="style/boilerplate.css"> 
 	<script src="https://apis.google.com/js/api:client.js"></script>
 	<script type="text/javascript" src="js/authenticate.js" ></script>
-</head>
+	<script type="text/javascript" src="js/chart_api.js" ></script>
+	<script type="text/javascript" src="js/chart.js" ></script>
+	<script type="text/javascript" src="js/load_index.js" ></script>
+
+	<link rel="stylesheet" type="text/css" href="style/boilerplate.css">  </head>
 <body>
 	<div id="gSignInWrapper">
 		<span class="label">Get scope: </span>
@@ -21,6 +25,6 @@
 		</div>
 	</div>
 	<div id="name"></div>
-	<script>startApp();</script> 
+	<canvas id="canvas" height="450" width="450"></canvas>
 </body>
 </html>
