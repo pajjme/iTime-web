@@ -1,7 +1,8 @@
 var startApp = function() {
 	gapi.load('auth2', function(){
 		var startAppHttpCommunicator = new httpCommunicator();
-		var startAppHtmlElementManager = new htmlElementStyleManager(document.getElementById('gSignInWrapper'),document.getElementById("gSignOutWrapper"));
+		var startAppHtmlElementManager = new htmlElementStyleManager(document.getElementById('gSignInWrapper'),
+			document.getElementById("gSignOutWrapper"));
 		// Retrieve the singleton for the GoogleAuth library and set up the client.
 		auth2 = gapi.auth2.init({
 			client_id: '856845744679-fr7uheupsjm65udbao75b6no8vjl8cm0.apps.googleusercontent.com',
@@ -20,6 +21,9 @@ var startApp = function() {
 			})}, 
 			function(error) {window.alert(0)}
 		);
-		document.getElementById('customBtn2').addEventListener("click", function() {auth2.disconnect(); startAppHtmlElementManager.swapVisibility(0,1,"visible","hidden")});
+		document.getElementById('customBtn2').addEventListener("click", function() {
+			auth2.disconnect()
+			startAppHtmlElementManager.swapVisibility(0,1,"visible","hidden")
+		});
 	});
 };
