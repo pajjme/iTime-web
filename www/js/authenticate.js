@@ -7,7 +7,7 @@ var startApp = function() {
 		scope: 'https://www.googleapis.com/auth/calendar'
 	});
 
-	var r = new buttonhider(document.getElementById('gSignInWrapper'),document.getElementById("gSignOutWrapper"));
+	var r = new elementManager(document.getElementById('gSignInWrapper'),document.getElementById("gSignOutWrapper"));
 	auth2.attachClickHandler(
 		document.getElementById('customBtn'), //what document element is the click attached to
 		{}, //OPTIONS
