@@ -7,15 +7,16 @@ var startApp = function() {
 		scope: 'https://www.googleapis.com/auth/calendar'
 	});
 
-	var r = new elementManager(document.getElementById('gSignInWrapper'),document.getElementById("gSignOutWrapper"));
+	var r = new htmlElementStyleManager(document.getElementById('gSignInWrapper'),document.getElementById("gSignOutWrapper"));
 	auth2.attachClickHandler(
 		document.getElementById('customBtn'), //what document element is the click attached to
 		{}, //OPTIONS
 		function() {auth2.grantOfflineAccess().then(function(resp) {
 			console.log(resp.code);
 			r.swapVisibility(0,1,"hidden","visible");
-			var s = new commWrapper(resp);
-			s.sendToServ("http://127.0.0.1:5000/login");
+			var s = new httpCommunicator();
+			var dataToBeSent = {auth_code: resp.code}
+			s.sendToServer("http://127.0.0.1:5000/login",dataToBeSent);
 		})}, 
 		function(error) {window.alert(0)}
 	);
