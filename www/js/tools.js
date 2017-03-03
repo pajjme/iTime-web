@@ -36,7 +36,6 @@ class commWrapper{
 class elementManager{
 	constructor(){
 		this.elements = Array.from(arguments)
-		this.elements =
 		}
 
 	swapVisibility(e1,e2,first,second){
