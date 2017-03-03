@@ -13,48 +13,12 @@ var startApp = function() {
 		{}, //OPTIONS
 		function() {auth2.grantOfflineAccess().then(function(resp) {
 			console.log(resp.code);
-			r.swapVisibility("hidden","visible");
-			var s = new sender(resp);
+			r.swapVisibility(0,1,"hidden","visible");
+			var s = new commWrapper(resp);
 			s.sendToServ("http://127.0.0.1:5000/login");
-			 /*var p = new sender(resp,"jonas"); p.makeJSON();/*ADD function that sends resp repackaged with the email as a json*/
 		})}, 
 		function(error) {window.alert(0)}
 	);
-	document.getElementById('customBtn2').addEventListener("click", function() {auth2.disconnect(); r.swapVisibility("visible","hidden")});
+	document.getElementById('customBtn2').addEventListener("click", function() {auth2.disconnect(); r.swapVisibility(0,1,"visible","hidden")});
 	});
 };
-
-
-class sender{
-	constructor(authorization_code){
-		this.authorization_code = "{auth_code: "+authorization_code.code+" }"
-	};
-	sendToServ(stri){
-		var req = new XMLHttpRequest();
-		req.open("POST",stri);
-		req.onreadystatechange = function() {//Call a function when the state changes.
-    		if(req.readyState == XMLHttpRequest.DONE && req.status == 200) {
-        		console.log(req.response)
-    		}		
-		}
-		req.send(JSON.stringify(this.authorization_code));
-	}
-	
-	makeString(){
-		return("info: "+this.info+", data:"+this.data)
-	}
-}
-
-class buttonhider{
-	constructor(elem1,elem2){
-		this.elem1 = elem1;
-		this.elem2 = elem2;
-		}
-
-	swapVisibility(first,second){
-		this.elem1.style.visibility = first
-		this.elem2.style.visibility = second
-	}
-
-}
-
