@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "setup": "gulp build",
+    "gulp": "gulp",
+	"clear": "gulp clear"
   },
   "author": "",
   "license": "ISC",
@@ -15,18 +17,18 @@
     "gulp-concat": "^2.6.1",
     "gulp-file": "^0.3.0",
     "gulp-insert": "^0.5.0",
+    "gulp-remove-files": "0.0.3",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
     "gulp-streamify": "^1.0.2",
     "gulp-uglify": "^2.0.1",
+    "gulp-watch": "^4.3.11",
     "merge-stream": "^1.0.1",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^1.1.0",
+	"delete-empty": "^1.0.0"
+
   },
   "dependencies": {
     "chart.js": "^2.5.0"
-  },
-  "scripts": {
-    "setup": "gulp build",
-	"gulp": "gulp"
   }
 }
