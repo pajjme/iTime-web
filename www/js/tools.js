@@ -1,6 +1,5 @@
 class httpCommunicator{
-	constructor(){
-	};
+	constructor(){};
 	sendToServer(url,data){
 		var req = new XMLHttpRequest()
 		req.open("POST",url)
@@ -41,4 +40,14 @@ class htmlElementStyleManager{
 	}
 }
 
-
+function makeApiCall() {
+  gapi.client.load('calendar', 'v3', function() {
+    var request = gapi.client.calendar.calendars.insert({
+      'summary': "LOL"
+    });
+          
+    request.execute(function(resp) {
+      console.log("SADSADSDSADAD")
+    });
+  });
+}

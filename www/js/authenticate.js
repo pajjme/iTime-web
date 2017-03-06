@@ -26,4 +26,29 @@ var startApp = function() {
 			startAppHtmlElementManager.swapVisibility(0,1,"visible","hidden")
 		});
 	});
-};
+	document.getElementById('customBtn3').addEventListener("click", function() {
+		gapi.client.load('calendar', 'v3', function() {
+    		var request = gapi.client.calendar.calendars.insert({
+      			'summary': "LOL28637"
+    		});     
+    		request.execute(function(resp) {
+      			console.log(resp)
+    		});
+  		});	
+	});
+	document.getElementById('customBtn4').addEventListener("click", function() {
+		var calendarListObj;
+		gapi.client.load('calendar', 'v3', function() {
+    		var request = gapi.client.calendar.calendarList.list();     
+    		request.execute(function(resp) {
+    			console.log(resp.items[0].id)
+      			var request2 = gapi.client.calendar.calendars.delete({
+      				'calendarId': resp.items[0].id
+      			});     
+    				request2.execute(function(resp) {
+      					console.log(resp)
+    			});
+    		})
+		});
+	});
+}
