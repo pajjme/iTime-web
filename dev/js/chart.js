@@ -1,6 +1,6 @@
 function displayPieChart(data,canvasId) {
 	
-	var config =  { 		               
+	var options =  { 		               
 		animationSteps: 100,
 		animationEasing: 'easeInOutQuart',
 		labelFontSize: 20,
@@ -9,5 +9,10 @@ function displayPieChart(data,canvasId) {
 	};
 
 	var ctx = document.getElementById(canvasId).getContext("2d");
-	new Chart(ctx).Pie(data,config);
+	
+	var myPieChart = new Chart(ctx,{
+    	type: 'pie',
+    	data: data,
+    	options: options
+	});
 }	
