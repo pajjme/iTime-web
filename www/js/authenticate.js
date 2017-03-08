@@ -51,7 +51,8 @@ let startApp = function() {
 	});*/
 
 	document.getElementById('customBtn3').addEventListener("click", function() {
-		startAppHttpCommunicator.communicateWithServer("http://127.0.0.1:5000/login",null,"GET").then(function(resp){
+		let url = "http://127.0.0.1:5000/v1/stats?from="+getDateFormatted(10,10,2016)+"&to="+getDateFormatted(11,10,2016);
+		startAppHttpCommunicator.communicateWithServer(url,null,"GET").then(function(resp){
 			displayPieChart(resp.data,canvas);
 		})
 	});

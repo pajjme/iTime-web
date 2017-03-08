@@ -50,3 +50,9 @@ class htmlElementStyleManager{
 		this.elements[e2].style.visibility = vis2
 	}
 }
+
+
+function getDateFormatted(day,month,year) {
+	let ret = new Date(year,month,day);
+	return ret.toISOString().substring(0,10);
+}
