@@ -1,7 +1,7 @@
-var startApp = function() {
+let startApp = function() {
 	gapi.load('auth2', function(){
-		var startAppHttpCommunicator = new httpCommunicator();
-		var startAppHtmlElementManager = new htmlElementStyleManager(document.getElementById('gSignInWrapper'),
+		let startAppHttpCommunicator = new httpCommunicator();
+		let startAppHtmlElementManager = new htmlElementStyleManager(document.getElementById('gSignInWrapper'),
 			document.getElementById("gSignOutWrapper"));
 		// Retrieve the singleton for the GoogleAuth library and set up the client.
 		auth2 = gapi.auth2.init({
@@ -16,8 +16,22 @@ var startApp = function() {
 			function() {auth2.grantOfflineAccess().then(function(resp) {
 				console.log(resp.code);
 				startAppHtmlElementManager.swapVisibility(0,1,"hidden","visible");
-				var dataToBeSent = {auth_code: resp.code}
-				startAppHttpCommunicator.sendToServer("http://127.0.0.1:5000/login",dataToBeSent);
+				let dataToBeSent = {auth_code: resp.code}
+				startAppHttpCommunicator.sendToServer("http://127.0.0.1:5000/login",dataToBeSent).then(function(resp){
+					if(resp == 1){
+						gapi.client.load('calendar', 'v3', function() {
+    						let request = gapi.client.calendar.calendars.insert({
+      							'summary': "iTime-Calendar-0001"
+    						});     
+    						request.execute(function(resp) {
+      							console.log("new account created")
+    						});
+  						});	
+					}
+					else{
+						console.log("Account Exists")
+					}
+				});
 			})}, 
 			function(error) {window.alert(0)}
 		);
@@ -28,8 +42,8 @@ var startApp = function() {
 	});
 	document.getElementById('customBtn3').addEventListener("click", function() {
 		gapi.client.load('calendar', 'v3', function() {
-    		var request = gapi.client.calendar.calendars.insert({
-      			'summary': "LOL28637"
+    		let request = gapi.client.calendar.calendars.insert({
+      			'summary': "iTime-Calendar-0001"
     		});     
     		request.execute(function(resp) {
       			console.log(resp)
@@ -37,17 +51,24 @@ var startApp = function() {
   		});	
 	});
 	document.getElementById('customBtn4').addEventListener("click", function() {
-		var calendarListObj;
+		let calendarListObj;
 		gapi.client.load('calendar', 'v3', function() {
-    		var request = gapi.client.calendar.calendarList.list();     
+    		let request = gapi.client.calendar.calendarList.list();     
     		request.execute(function(resp) {
-    			console.log(resp.items[0].id)
-      			var request2 = gapi.client.calendar.calendars.delete({
-      				'calendarId': resp.items[0].id
-      			});     
-    				request2.execute(function(resp) {
-      					console.log(resp)
-    			});
+    			console.log(resp)
+    			var idToBeDeleted = resp.items.find(x => x.summary == "iTime-Calendar-0001")
+    			if(!(idToBeDeleted == undefined)){	 
+    				console.log(idToBeDeleted.id)
+      				let request2 = gapi.client.calendar.calendars.delete({
+      					'calendarId': idToBeDeleted.id
+      				});     
+    					request2.execute(function(resp) {
+      						console.log("DELETED")
+    				});
+    			}
+    			else{
+    				console.log("No iTime calendar exists")
+    			}
     		})
 		});
 	});

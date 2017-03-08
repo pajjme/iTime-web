@@ -1,18 +1,25 @@
 class httpCommunicator{
 	constructor(){};
 	sendToServer(url,data){
-		var req = new XMLHttpRequest()
-		req.open("POST",url)
-		req.onreadystatechange = function() {
-    		if(req.readyState == XMLHttpRequest.DONE && req.status == 200) {
-        		console.log(req.response)
-    		}		
-		}
-		req.send(JSON.stringify(data));
+		return new Promise(function(resolve,reject){
+			let req = new XMLHttpRequest()
+			req.open("POST",url)
+			req.onload = function() {
+    			if(req.status == 200) {
+    				console.log(req.response)
+        			resolve(req.response);
+    			}		
+    			else{
+    				reject(Error(req.statusText));
+    			}
+			}
+			req.send(JSON.stringify(data));
+		})
 	}
+	
 	getFromServer(url){
 		return new Promise(function(resolve, reject){
-			var req = new XMLHttpRequest()
+			let req = new XMLHttpRequest()
 			req.open("GET",url)
 			req.onreadystatechange = function() {
     			if(req.status == 200) {
@@ -38,16 +45,4 @@ class htmlElementStyleManager{
 		this.elements[e1].style.visibility = vis1
 		this.elements[e2].style.visibility = vis2
 	}
-}
-
-function makeApiCall() {
-  gapi.client.load('calendar', 'v3', function() {
-    var request = gapi.client.calendar.calendars.insert({
-      'summary': "LOL"
-    });
-          
-    request.execute(function(resp) {
-      console.log("SADSADSDSADAD")
-    });
-  });
 }
