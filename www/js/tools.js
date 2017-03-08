@@ -1,9 +1,9 @@
 class httpCommunicator{
 	constructor(){};
-	sendToServer(url,data){
+	communicateWithServer(url,data,type){
 		return new Promise(function(resolve,reject){
 			let req = new XMLHttpRequest()
-			req.open("POST",url)
+			req.open(type,url)
 			req.onload = function() {
     			if(req.status == 200) {
     				console.log(req.response)
@@ -13,15 +13,21 @@ class httpCommunicator{
     				reject(Error(req.statusText));
     			}
 			}
-			req.send(JSON.stringify(data));
+			switch(type){
+				case "POST":
+					req.send(JSON.stringify(data));
+					break;
+				case "GET":
+					req.send()
+			}
 		})
 	}
-	
-	getFromServer(url){
+	/* OLD
+	getFromServer(url, reqD){
 		return new Promise(function(resolve, reject){
 			let req = new XMLHttpRequest()
 			req.open("GET",url)
-			req.onreadystatechange = function() {
+			req.onload = function() {
     			if(req.status == 200) {
         			resolve(req.response)
     			}
@@ -31,10 +37,8 @@ class httpCommunicator{
 			}
 			req.send()
 		})	
-	}
+	}*/
 }
-
-
 
 class htmlElementStyleManager{
 	constructor(htmlElementId){
