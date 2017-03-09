@@ -13,6 +13,7 @@ var collapse = require('bundle-collapser/plugin');
 var watch = require('gulp-watch');
 var removeFiles = require('gulp-remove-files');
 var deleteEmpty = require('delete-empty');
+var runSequence = require('run-sequence');
 var package = require('./package.json');
 
 var outDir = './www/';
@@ -97,34 +98,50 @@ gulp.task('js', function() {
 
 
 
-//gulp.task('watch', function() {
+gulp.task('watch', function() {
 // Watch .js files
-//	watch(dev+'js/**/*.js', function() { gulp.start('js');});
+	watch(dev+'js/**/*.js', function() { gulp.start('js');});
 // Watch .css files
-//	watch(dev + 'style/**/*.css', function() { gulp.start('clear-css','css');});
+	watch(dev + 'style/**/*.css', function() {runSequence('clear-css','delete-empty-directories','css');});
 // Watch .html files
-//	watch(dev + '**/*.html', function() { gulp.start('clear-html','html');});
+	watch(dev + '**/*.html', function() {runSequence('clear-html','delete-empty-directories','html');});
 
-//});
+});
 
 
 //Clear html files
 gulp.task('clear-html', function() {
-	gulp.src(outDir + '/**/*.html')
+	return gulp.src(outDir + '/**/*.html')
 		.pipe(removeFiles());
 });
 
 //Clear css files
 gulp.task('clear-css', function() {
-	gulp.src(outDir + '/style/**/*.css')
+	return gulp.src(outDir + '/style/**/*.css')
 		.pipe(removeFiles());
 });
 
 //Clear empty folders
 gulp.task('delete-empty-directories', function() {
-	deleteEmpty.sync('www/');
+	return deleteEmpty.sync('www/');
 });
 
-gulp.task('clear', ['clear-html', 'clear-css', 'delete-empty-directories'])
-gulp.task('build', ['html', 'css', 'js', 'chart']);
-gulp.task('default', ['html', 'css', 'js']);
+
+
+
+
+
+
+gulp.task('clear', function(callback) {
+  runSequence(['clear-html', 'clear-css'],'delete-empty-directories',callback);
+});
+
+gulp.task('build', function(callback) {
+  runSequence('clear',
+              ['html', 'css', 'js', 'chart'],callback);
+});
+
+gulp.task('default', function(callback) {
+  runSequence('clear',
+              ['html', 'css', 'js'],callback);
+});

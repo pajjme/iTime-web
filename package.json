@@ -6,13 +6,15 @@
   "scripts": {
     "setup": "gulp build",
     "build": "gulp",
-	"clear": "gulp clear"
+    "clear": "gulp clear",
+	"watch": "gulp watch"
   },
   "author": "",
   "license": "",
   "devDependencies": {
     "browserify": "^14.1.0",
     "bundle-collapser": "^1.2.1",
+    "delete-empty": "^1.0.0",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
     "gulp-file": "^0.3.0",
@@ -24,9 +26,8 @@
     "gulp-uglify": "^2.0.1",
     "gulp-watch": "^4.3.11",
     "merge-stream": "^1.0.1",
-    "vinyl-source-stream": "^1.1.0",
-	"delete-empty": "^1.0.0"
-
+    "run-sequence": "^1.2.2",
+    "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
     "chart.js": "^2.5.0"
