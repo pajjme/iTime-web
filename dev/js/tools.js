@@ -37,6 +37,18 @@ class htmlElementStyleManager{
 
 
 function getDateFormatted(day,month,year) {
-	let ret = new Date(year,month,day);
+	let ret = new Date(year,month,day+1);
 	return ret.toISOString().substring(0,10);
+}
+
+
+//By James Forbes of StackOverflow (http://stackoverflow.com/questions/8064691/how-do-i-pass-along-variables-with-xmlhttprequest)
+
+function formatParams(params){
+	return "?" + Object
+		.keys(params)
+		.map(function(key){
+			return key+"="+params[key]
+		})
+ 		.join("&")
 }
