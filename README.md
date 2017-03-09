@@ -12,8 +12,8 @@ The iTime web client
 ## Following builds
 * run **npm run build**
 
-##Clean www
-* run **npm run clear
+##Clear www
+* run **npm run clear**
 
 ## Guidelines
 Develop in the *dev* folder, not in the *www* folder.
