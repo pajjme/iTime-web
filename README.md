@@ -12,7 +12,7 @@ The iTime web client
 ## Following builds
 * run **npm run build**
 
-##Clear www
+##Clean www
 * run **npm run clear
 
 ## Guidelines
