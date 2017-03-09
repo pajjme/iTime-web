@@ -9,7 +9,7 @@ The iTime web client
 * Set nginx root path = ”(*path to iTime-web*)/www”
 * Start nginx **sudo nginx**
 
-## Folowing build
+## Following builds
 * run **npm run build**
 
 ##Clear www
