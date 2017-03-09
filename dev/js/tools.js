@@ -1,34 +1,28 @@
 class httpCommunicator{
-	constructor(){
-	};
-	sendToServer(url,data){
-		var req = new XMLHttpRequest()
-		req.open("POST",url)
-		req.onreadystatechange = function() {
-    		if(req.readyState == XMLHttpRequest.DONE && req.status == 200) {
-        		console.log(req.response)
-    		}		
-		}
-		req.send(JSON.stringify(data));
-	}
-	getFromServer(url){
-		return new Promise(function(resolve, reject){
-			var req = new XMLHttpRequest()
-			req.open("GET",url)
-			req.onreadystatechange = function() {
-    			if(req.status == 200) {
-        			resolve(req.response)
-    			}
-    			else{
-    				reject(Error(req.statusText))
-    			}		
+	constructor(){};
+	communicateWithServer(url,data,type){
+		return new Promise(function(resolve,reject){
+			let req = new XMLHttpRequest()
+			req.open(type,url)
+			req.onload = function() {
+				if(req.status == 200) {
+					console.log(req.response)
+					resolve(req.response);
+				}		
+				else{
+					reject(Error(req.statusText));
+				}
 			}
-			req.send()
-		})	
+			switch(type){
+				case "POST":
+					req.send(JSON.stringify(data));
+					break;
+				case "GET":
+					req.send()
+			}
+		})
 	}
 }
-
-
 
 class htmlElementStyleManager{
 	constructor(htmlElementId){
@@ -42,3 +36,7 @@ class htmlElementStyleManager{
 }
 
 
+function getDateFormatted(day,month,year) {
+	let ret = new Date(year,month,day);
+	return ret.toISOString().substring(0,10);
+}

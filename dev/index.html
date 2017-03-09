@@ -1,27 +1,38 @@
 <html>
 <head>
+ 	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" type="text/css" href="style/boilerplate.css"> 
 	<script src="https://apis.google.com/js/api:client.js"></script>
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script type="text/javascript" src="js/Chart.bundle.min.js" ></script>
 	<script type="text/javascript" src="js/main.min.js" ></script>
 
 </head>
 <body>
-	<div id="gSignInWrapper">
-		<!--<span class="label">GET SCOPE: </span>!-->
-		<div id="customBtn" class="customGPlusSignIn">
-			<span class="icon"></span>
-			<span class="buttonText">GOOGLE</span>
+	<div class="container">
+  		<h1>Welcome to iTime!</h1>
+  		<p>Made by pajj</p>
+  		<div id="gSignInWrapper">
+			<button id="customBtn" type="button" class="customGPlusSignIn">GOOGLE</button>  
 		</div>
-	</div>
-	<div id="gSignOutWrapper">
-	<!--<span class="label">Leave scope: </span>!-->
-		<div id="customBtn2" class="customGPlusSignIn">
-			<span class="icon"></span>
-			<span class="buttonText">Revoke Scope</span>
+		<div id="gSignOutWrapper">
+			<button id="customBtn2" type="button" class="customGPlusSignIn">Revoke</button>  
 		</div>
+		<div id="LastButton">
+			<button id="customBtn3" type="button" class="customGPlusSignIn">UpdateCalendar</button>  
+		</div>
+		<div id="NotLast">
+			<button id="customBtn4" type="button" class="customGPlusSignIn">CalendarRemoveTest</button>  
+		</div>
+		<canvas id="canvas" height="450" width="450"></canvas>
 	</div>
-	<canvas id="canvas" height="450" width="450"></canvas>
 </body>
 </html>
