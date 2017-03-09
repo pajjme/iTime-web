@@ -15,6 +15,9 @@ The iTime web client
 ##Clear www
 * run **npm run clear**
 
+##Watch
+* run **npm run watch**
+
 ## Guidelines
 Develop in the *dev* folder, not in the *www* folder.
 All *js* files in the *www/js* folder will be merged to one big file named *main.min.js*
