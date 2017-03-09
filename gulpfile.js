@@ -65,14 +65,19 @@ gulp.task('chart', function() {
 
 //Build html
 gulp.task('html', function() {
+
 	return gulp.src(dev+'/**/*.html')
       .pipe(gulp.dest(outDir));
+
 });
 
 //Build css
 gulp.task('css', function() {
+
 	return gulp.src(dev+'style/**/*.css')
       .pipe(gulp.dest(outDir+'style/'));
+
+
 });
 
 //Build javascript
@@ -86,15 +91,16 @@ gulp.task('js', function() {
 
 
 
-gulp.task('watch', function() {
+//gulp.task('watch', function() {
     // Watch .js files
-	watch(dev+'js/**/*.js', function() { gulp.start('js');});
+//	watch(dev+'js/**/*.js', function() { gulp.start('js');});
 	// Watch .css files
-	watch(dev + 'style/**/*.css', function() { gulp.start('css');});
+//	watch(dev + 'style/**/*.css', function() { gulp.start('clear-css','css');});
 	// Watch .html files
-	watch(dev + '**/*.html', function() { gulp.start('html');});
+//	watch(dev + '**/*.html', function() { gulp.start('clear-html','html');});
 
-});
+//});
+
 
 //Clear html files
 gulp.task('clear-html', function () {
@@ -114,7 +120,7 @@ gulp.task('delete-empty-directories', function() {
 });
 
 gulp.task('clear',['clear-html','clear-css','delete-empty-directories'])
-gulp.task('build',['clear','html','css','js','chart','watch']);
-gulp.task('default', ['clear','html','css','js','watch']);
+gulp.task('build',['html','css','js','chart']);
+gulp.task('default', ['html','css','js']);
 
 

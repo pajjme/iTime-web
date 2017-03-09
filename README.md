@@ -10,7 +10,10 @@ The iTime web client
 * Start nginx **sudo nginx**
 
 ## Folowing build
-* run **npm run gulp**
+* run **npm run build**
+
+##Clear www
+* run **npm run clear
 
 ## Guidelines
 Develop in the *dev* folder, not in the *www* folder.

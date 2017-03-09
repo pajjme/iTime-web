@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "setup": "gulp build",
-    "gulp": "gulp",
+    "build": "gulp",
 	"clear": "gulp clear"
   },
   "author": "",
