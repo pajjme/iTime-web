@@ -51,7 +51,14 @@ let startApp = function() {
 	});*/
 
 	document.getElementById('customBtn3').addEventListener("click", function() {
-		let url = "http://127.0.0.1:5000/v1/stats?from="+getDateFormatted(10,10,2016)+"&to="+getDateFormatted(11,10,2016);
+		let endpoint = "http://127.0.0.1:5000/v1/stats"
+		let params = 
+		{
+			from: getDateFormatted(30,2,2017),
+			to: getDateFormatted(31,2,2017),
+		} 
+		let url = endpoint+formatParams(params)
+		console.log(url)
 		startAppHttpCommunicator.communicateWithServer(url,null,"GET").then(function(resp){
 			displayPieChart(resp.data,canvas);
 		})
