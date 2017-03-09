@@ -2,14 +2,14 @@
   "name": "itime",
   "version": "0.1.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
     "setup": "gulp build",
     "build": "gulp",
 	"clear": "gulp clear"
   },
   "author": "",
-  "license": "ISC",
+  "license": "",
   "devDependencies": {
     "browserify": "^14.1.0",
     "bundle-collapser": "^1.2.1",
