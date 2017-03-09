@@ -5,13 +5,13 @@ class httpCommunicator{
 			let req = new XMLHttpRequest()
 			req.open(type,url)
 			req.onload = function() {
-    			if(req.status == 200) {
-    				console.log(req.response)
-        			resolve(req.response);
-    			}		
-    			else{
-    				reject(Error(req.statusText));
-    			}
+				if(req.status == 200) {
+					console.log(req.response)
+					resolve(req.response);
+				}		
+				else{
+					reject(Error(req.statusText));
+				}
 			}
 			switch(type){
 				case "POST":
@@ -22,22 +22,6 @@ class httpCommunicator{
 			}
 		})
 	}
-	/* OLD
-	getFromServer(url, reqD){
-		return new Promise(function(resolve, reject){
-			let req = new XMLHttpRequest()
-			req.open("GET",url)
-			req.onload = function() {
-    			if(req.status == 200) {
-        			resolve(req.response)
-    			}
-    			else{
-    				reject(Error(req.statusText))
-    			}		
-			}
-			req.send()
-		})	
-	}*/
 }
 
 class htmlElementStyleManager{
