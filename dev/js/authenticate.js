@@ -50,19 +50,8 @@ let startApp = function() {
   		});	
 	});*/
 
-	document.getElementById('customBtn3').addEventListener("click", function() {
-		let endpoint = "http://127.0.0.1:5000/v1/stats"
-		let params = 
-		{
-			from: getDateFormatted(30,2,2017),
-			to: getDateFormatted(31,2,2017),
-		} 
-		let url = endpoint+formatParams(params)
-		console.log(url)
-		startAppHttpCommunicator.communicateWithServer(url,null,"GET").then(function(resp){
-			displayPieChart(resp.data,canvas);
-		})
-	});
+	document.getElementById('customBtn3').addEventListener("click", updatePieChart(getDateFormatted(30,2,2017),getDateFormatted(31,2,2017)));
+	
 	document.getElementById('customBtn4').addEventListener("click", function() {
 		let calendarListObj;
 		gapi.client.load('calendar', 'v3', function() {
@@ -85,4 +74,40 @@ let startApp = function() {
     		})
 		});
 	});
+	document.getElementById('prev').addEventListener("click", function() {
+		let newdate = moveDate(-1,7,currentStartDate);
+		let ret = updatePieChart(newdate.toISOString().substring(0,10),currentStartDate.toISOString().substring(0,10));
+		if(ret[2]){
+			currentEndDate = currentStartDate;
+			currentStartDate = newdate;
+		}
+		else{
+			console.log("NO CALENDAR DATA FOR THAT MONTH");
+			document.getElementById('prev').style.visibility = "hidden";
+		}
+		if(ret[1]){
+			document.getElementById('prev').style.visibility = "hidden";
+		}
+		if(document.getElementById('next').style.visibility === "hidden"){
+			document.getElementById('next').style.visibility = "visible";
+		}
+	})
+	document.getElementById('next').addEventListener("click", function() {
+		let newdate = moveDate(1,7,currentEndDate);
+		let ret = updatePieChart(currentEndDate.toISOString().substring(0,10),newdate.toISOString().substring(0,10));
+		if(ret[2]){
+			currentStartDate = currentEndDate;
+			currentEndDate = newdate;
+		}
+		else{
+			console.log("NO CALENDAR DATA FOR THAT MONTH");
+			document.getElementById('next').style.visibility = "hidden";
+		}
+		if(ret[1]){
+			document.getElementById('next').style.visibility = "hidden";
+		}
+		if(document.getElementById('prev').style.visibility === "hidden"){
+			document.getElementById('prev').style.visibility = "visible";
+		}
+	})
 }
