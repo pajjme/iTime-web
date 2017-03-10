@@ -5,18 +5,18 @@ The iTime web client
 * Install nginx
 * Install npm 
 * Run **npm install**
-* Run **npm run setup**
+* Run **gulp setup**
 * Set nginx root path = ”(*path to iTime-web*)/www”
 * Start nginx **sudo nginx**
 
 ## Following builds
-* run **npm run build**
+* run **gulp build**
 
 ##Clear www
-* run **npm run clear**
+* run **gulp clear**
 
 ##Watch
-* run **npm run watch**
+* run **gulp watch**
 
 ## Guidelines
 Develop in the *dev* folder, not in the *www* folder.
