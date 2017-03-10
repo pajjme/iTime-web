@@ -14,6 +14,7 @@ var watch = require('gulp-watch');
 var removeFiles = require('gulp-remove-files');
 var deleteEmpty = require('delete-empty');
 var runSequence = require('run-sequence');
+var w3cjs = require('gulp-w3cjs');
 var package = require('./package.json');
 
 var outDir = './www/';
@@ -72,7 +73,8 @@ gulp.task('chart', function() {
 gulp.task('html', function() {
 
 	return gulp.src(dev + '/**/*.html')
-		.pipe(gulp.dest(outDir));
+		.pipe(w3cjs())
+        .pipe(gulp.dest(outDir));
 
 });
 
@@ -98,15 +100,7 @@ gulp.task('js', function() {
 
 
 
-gulp.task('watch', function() {
-// Watch .js files
-	watch(dev+'js/**/*.js', function() { gulp.start('js');});
-// Watch .css files
-	watch(dev + 'style/**/*.css', function() {runSequence('clear-css','delete-empty-directories','css');});
-// Watch .html files
-	watch(dev + '**/*.html', function() {runSequence('clear-html','delete-empty-directories','html');});
 
-});
 
 
 //Clear html files
@@ -130,18 +124,26 @@ gulp.task('delete-empty-directories', function() {
 
 
 
+gulp.task('watch', function() {
+// Watch .js files
+	watch(dev+'js/**/*.js', function() { gulp.start('js');});
+// Watch .css files
+	watch(dev + 'style/**/*.css', function() {runSequence('clear-css','delete-empty-directories','css');});
+// Watch .html files
+	watch(dev + '**/*.html', function() {runSequence('clear-html','delete-empty-directories','html');});
 
+});
 
 gulp.task('clear', function(callback) {
   runSequence(['clear-html', 'clear-css'],'delete-empty-directories',callback);
 });
 
-gulp.task('build', function(callback) {
+gulp.task('setup', function(callback) {
   runSequence('clear',
               ['html', 'css', 'js', 'chart'],callback);
 });
 
-gulp.task('default', function(callback) {
+gulp.task('build', function(callback) {
   runSequence('clear',
               ['html', 'css', 'js'],callback);
 });
