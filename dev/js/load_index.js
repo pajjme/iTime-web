@@ -2,6 +2,7 @@ window.onload = function() {
 
 	startApp();
 	displayChart();
+	document.getElementById("info").innerHTML = val;
 };
 
 function displayChart() {

@@ -80,6 +80,8 @@ let startApp = function() {
 		if(ret[2]){
 			currentEndDate = currentStartDate;
 			currentStartDate = newdate;
+			let disp = currentStartDate.toISOString().substring(0,10)+ " - "+currentEndDate.toISOString().substring(0,10);
+			document.getElementById('info').innerHTML = disp;
 		}
 		else{
 			console.log("NO CALENDAR DATA FOR THAT MONTH");
@@ -98,6 +100,8 @@ let startApp = function() {
 		if(ret[2]){
 			currentStartDate = currentEndDate;
 			currentEndDate = newdate;
+			let disp = currentStartDate.toISOString().substring(0,10)+" - "+currentEndDate.toISOString().substring(0,10);
+			document.getElementById('info').innerHTML = disp;
 		}
 		else{
 			console.log("NO CALENDAR DATA FOR THAT MONTH");

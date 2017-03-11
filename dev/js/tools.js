@@ -70,34 +70,6 @@ function getDateFormatted(day,month,year) {
 	return ret.toISOString().substring(0,10);
 }
 
-/*
-function getNewDate(days,direction,currentDate){
-	switch(month){
-		case 11:
-		case 9:
-		case 7:
-		case 6:
-		case 4:
-		case 2:
-		case 0:
-			if(currentDate.getDate()+days > 31){
-				if(month == 11){
-					return new date(currentDate.getFullYear()+1,0,days-(31-currentDate.getDate()));
-				}
-				return new date(currentDate.getFullYear(),currentDate.getMonth()+1,days-(31-currentDate.getDate()));
-			}
-			return new date(currentDate.getFullYear(),currentDate.getMonth(),currentDate.getDate()+days)
-		case 1:
-			if(currentDate.getFullYear() % 4 == 0)
-		case 3:
-		case 5:
-		case 8:
-		case 10:
-			break;
-
-
-	}
-}*/
 //By James Forbes of StackOverflow (http://stackoverflow.com/questions/8064691/how-do-i-pass-along-variables-with-xmlhttprequest)
 
 function formatParams(params){
