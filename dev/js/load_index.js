@@ -2,7 +2,9 @@ window.onload = function() {
 
 	startApp();
 	displayChart();
-	document.getElementById("info").innerHTML = val;
+	document.getElementById("info1").innerHTML = currentStartDate.toISOString().substring(0,10);
+	document.getElementById("info2").innerHTML = currentEndDate.toISOString().substring(0,10);
+
 };
 
 function displayChart() {

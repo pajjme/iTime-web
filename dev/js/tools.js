@@ -49,10 +49,11 @@ function updatePieChart(startDateFormatted, endDateFormatted) {
 	generalHttpCommunicator.communicateWithServer(url,null,"GET").then(
 		function(resp){
 			displayPieChart(resp.data,canvas);
-			return [resp.bool[0],resp.bool[1],1];
+			let totalSum = resp.data.reduce(function(acc, val) {return acc + val;}, 0);
+			return [resp.bool[0],resp.bool[1],1,totalSum];
 		},
 		function(){
-			return [0,0,0];
+			return [0,0,0,0];
 		}
 	)
 }
