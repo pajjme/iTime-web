@@ -33,6 +33,8 @@ let startApp = function() {
 			})}, 
 			function(error) {window.alert(0)}
 		);
+
+	//Revokes the authentication with the google api.
 		document.getElementById('customBtn2').addEventListener("click", function() {
 			auth2.disconnect()
 			startAppHtmlElementManager.swapVisibility(0,1,"visible","hidden")
@@ -40,8 +42,8 @@ let startApp = function() {
 		});
 	});
 
-	//document.getElementById('customBtn3').addEventListener("click", updatePieChart(getDateFormatted(30,2,2017),getDateFormatted(31,2,2017)));
-	
+	//This button removes the iTime calendar if such a calendar exists on in the user's google calendar
+
 	document.getElementById('removeCalendarButton').addEventListener("click", function() {
 		let calendarListObj;
 		gapi.client.load('calendar', 'v3', function() {
@@ -64,6 +66,10 @@ let startApp = function() {
     		})
 		});
 	});
+
+	/*Gets (hopefully, not tested with BE) user data from the week before the currently selected week and changes the currently
+	selected week to the previous week.*/
+
 	document.getElementById('prev').addEventListener("click", function() {
 		let newdate = moveDate(-1,7,currentStartDate);
 		let ret = updatePieChart(newdate.toISOString().substring(0,10),currentStartDate.toISOString().substring(0,10));
@@ -86,6 +92,10 @@ let startApp = function() {
 			document.getElementById('next').style.visibility = "visible";
 		}
 	})
+
+	/*Gets (hopefully, not tested with BE) user data from the week after the currently selected week and changes the currently
+	selected week to the next week.*/
+
 	document.getElementById('next').addEventListener("click", function() {
 		let newdate = moveDate(1,7,currentEndDate);
 		let ret = updatePieChart(currentEndDate.toISOString().substring(0,10),newdate.toISOString().substring(0,10));
