@@ -13,6 +13,7 @@ let startApp = function() {
 			function() {auth2.grantOfflineAccess().then(function(resp) {
 				console.log(resp.code);
 				startAppHtmlElementManager.swapVisibility(0,1,"hidden","visible");
+				document.getElementById('remItime').style.visibility = "visible"
 				let dataToBeSent = {auth_code: resp.code}
 				startAppHttpCommunicator.communicateWithServer("http://127.0.0.1:5000/login",dataToBeSent,"POST").then(function(resp){
 					if(resp == 1){
@@ -32,38 +33,18 @@ let startApp = function() {
 			})}, 
 			function(error) {window.alert(0)}
 		);
+
+	//Revokes the authentication with the google api.
 		document.getElementById('customBtn2').addEventListener("click", function() {
 			auth2.disconnect()
 			startAppHtmlElementManager.swapVisibility(0,1,"visible","hidden")
+			document.getElementById('remItime').style.visibility = "hidden"
 		});
 	});
 
-	/*TEST CODE FOR CALENDAR CREATION	
-	document.getElementById('customBtn3').addEventListener("click", function() {
-		gapi.client.load('calendar', 'v3', function() {
-    		let request = gapi.client.calendar.calendars.insert({
-      			'summary': "iTime-Calendar-0001"
-    		});     
-    		request.execute(function(resp) {
-      			console.log(resp)
-    		});
-  		});	
-	});*/
+	//This button removes the iTime calendar if such a calendar exists on in the user's google calendar
 
-	document.getElementById('customBtn3').addEventListener("click", function() {
-		let endpoint = "http://127.0.0.1:5000/v1/stats"
-		let params = 
-		{
-			from: getDateFormatted(30,2,2017),
-			to: getDateFormatted(31,2,2017),
-		} 
-		let url = endpoint+formatParams(params)
-		console.log(url)
-		startAppHttpCommunicator.communicateWithServer(url,null,"GET").then(function(resp){
-			displayPieChart(resp.data,canvas);
-		})
-	});
-	document.getElementById('customBtn4').addEventListener("click", function() {
+	document.getElementById('removeCalendarButton').addEventListener("click", function() {
 		let calendarListObj;
 		gapi.client.load('calendar', 'v3', function() {
     		let request = gapi.client.calendar.calendarList.list();     
@@ -85,4 +66,55 @@ let startApp = function() {
     		})
 		});
 	});
+
+	/*Gets (hopefully, not tested with BE) user data from the week before the currently selected week and changes the currently
+	selected week to the previous week.*/
+
+	document.getElementById('prev').addEventListener("click", function() {
+		let newdate = moveDate(-1,7,currentStartDate);
+		let ret = updatePieChart(newdate.toISOString().substring(0,10),currentStartDate.toISOString().substring(0,10));
+		if(ret[2]){
+			currentEndDate = currentStartDate;
+			currentStartDate = newdate;
+			document.getElementById('info1').innerHTML = currentStartDate.toISOString().substring(0,10);
+			document.getElementById('info2').innerHTML = currentEndDate.toISOString().substring(0,10);
+			document.getElementById('tot').innerHTML = ret[3];
+
+		}
+		else{
+			console.log("NO CALENDAR DATA FOR THAT MONTH");
+			document.getElementById('prev').style.visibility = "hidden";
+		}
+		if(ret[1]){
+			document.getElementById('prev').style.visibility = "hidden";
+		}
+		if(document.getElementById('next').style.visibility === "hidden"){
+			document.getElementById('next').style.visibility = "visible";
+		}
+	})
+
+	/*Gets (hopefully, not tested with BE) user data from the week after the currently selected week and changes the currently
+	selected week to the next week.*/
+
+	document.getElementById('next').addEventListener("click", function() {
+		let newdate = moveDate(1,7,currentEndDate);
+		let ret = updatePieChart(currentEndDate.toISOString().substring(0,10),newdate.toISOString().substring(0,10));
+		if(ret[2]){
+			currentStartDate = currentEndDate;
+			currentEndDate = newdate;
+			document.getElementById('info1').innerHTML = currentStartDate.toISOString().substring(0,10);
+			document.getElementById('info2').innerHTML = currentEndDate.toISOString().substring(0,10);
+			document.getElementById('tot').innerHTML = ret[3];
+		}
+		else{
+			console.log("NO CALENDAR DATA FOR THAT MONTH");
+			document.getElementById('next').style.visibility = "hidden";
+		}
+		if(ret[1]){
+			document.getElementById('next').style.visibility = "hidden";
+		}
+		if(document.getElementById('prev').style.visibility === "hidden"){
+			document.getElementById('prev').style.visibility = "visible";
+		}
+	})
 }
