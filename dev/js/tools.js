@@ -48,7 +48,7 @@ function updatePieChart(startDateFormatted, endDateFormatted) {
 	console.log(url);
 	generalHttpCommunicator.communicateWithServer(url,null,"GET").then(
 		function(resp){
-			validate(resp.data);
+			//validate(resp.data); TO BE IMPLEMENTED
 			displayPieChart(resp.data,canvas);
 			let totalSum = resp.data.reduce(function(acc, val) {return acc + val;}, 0);
 			return [resp.bool[0],resp.bool[1],1,totalSum];
