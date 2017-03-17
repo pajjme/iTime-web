@@ -4,6 +4,21 @@ h1 {
   background-color: yellow;
 }
 
+#remItime {
+	visibility: hidden
+}
+
+#removeCalendarButton {
+		background: lightblue;
+		color: #444;
+		width: 150px;
+		height: 50px;
+		border-radius: 5px;
+		border: thin solid #888;
+		box-shadow: 1px 1px 1px grey;
+		white-space: nowrap;
+	}
+
 
 #customBtn {
 		color: #444;

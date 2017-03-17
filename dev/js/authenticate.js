@@ -13,6 +13,7 @@ let startApp = function() {
 			function() {auth2.grantOfflineAccess().then(function(resp) {
 				console.log(resp.code);
 				startAppHtmlElementManager.swapVisibility(0,1,"hidden","visible");
+				document.getElementById('remItime').style.visibility = "visible"
 				let dataToBeSent = {auth_code: resp.code}
 				startAppHttpCommunicator.communicateWithServer("http://127.0.0.1:5000/login",dataToBeSent,"POST").then(function(resp){
 					if(resp == 1){
@@ -35,24 +36,13 @@ let startApp = function() {
 		document.getElementById('customBtn2').addEventListener("click", function() {
 			auth2.disconnect()
 			startAppHtmlElementManager.swapVisibility(0,1,"visible","hidden")
+			document.getElementById('remItime').style.visibility = "hidden"
 		});
 	});
 
-	/*TEST CODE FOR CALENDAR CREATION	
-	document.getElementById('customBtn3').addEventListener("click", function() {
-		gapi.client.load('calendar', 'v3', function() {
-    		let request = gapi.client.calendar.calendars.insert({
-      			'summary': "iTime-Calendar-0001"
-    		});     
-    		request.execute(function(resp) {
-      			console.log(resp)
-    		});
-  		});	
-	});*/
-
-	document.getElementById('customBtn3').addEventListener("click", updatePieChart(getDateFormatted(30,2,2017),getDateFormatted(31,2,2017)));
+	//document.getElementById('customBtn3').addEventListener("click", updatePieChart(getDateFormatted(30,2,2017),getDateFormatted(31,2,2017)));
 	
-	document.getElementById('customBtn4').addEventListener("click", function() {
+	document.getElementById('removeCalendarButton').addEventListener("click", function() {
 		let calendarListObj;
 		gapi.client.load('calendar', 'v3', function() {
     		let request = gapi.client.calendar.calendarList.list();     
