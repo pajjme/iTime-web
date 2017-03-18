@@ -3,7 +3,7 @@
 <head>
 	<title>Index</title>
 	<meta charset="UTF-8">
- 	<!-- Latest compiled and minified CSS -->
+	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" type="text/css" href="style/boilerplate.css"> 
@@ -20,44 +20,51 @@
 
 </head>
 <body>
-	<div class="container">
-  		<h1 class="text-center">Welcome to iTime!</h1>
-  		<p class="text-center">Made by pajj</p>
-  		<div class="row">
-  			<div class="col-md-4"></div>
-  			<div id="gSignInWrapper" class="col-md-4" align="center">
-				<button id="customBtn" type="button" class="customGPlusSignIn" align="center">GOOGLE</button>  
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-4"></div>
-			<div id="gSignOutWrapper" class="col-md-4" align="center">
-				<button id="customBtn2" type="button" class="customGPlusSignIn" align="center">Revoke</button>  
-			</div>
-		</div>
-		<!--<div id="LastButton">
-			<button id="customBtn3" type="button" class="customGPlusSignIn">UpdateCalendar</button>  
-		</div> -->
 
+	<!--<nav id="nav">
+	 	<div class="container">
+			<ul class="navlinks">
+			 	<li><a href="index.html">Homepage</a></li>
+			 	<li><a href="index.html">About Us</a></li>
+			 	<li><a href="index.html">Projects</a></li>
+			 	<li><a href="index.html">The Team</a></li>
+			 	<li><a href="index.html">Contacts</a></li>
+			</ul>
+		</div>
+	</nav>
+	-->
+	<div class="container">
+		<h1 class="text-center">Welcome to iTime!</h1>
+		<p class="text-center">Made by pajj</p>
 		<div class="row">
 			<div class="col-md-4"></div>
-			<div id="remItime" class="col-md-4" align="center">
+			<div id="gSignInWrapper" class="col-md-4" style="text-align:center">
+				<button id="customBtn" type="button" class="customGPlusSignIn" style="text-align:center">GOOGLE</button>
+				<button id="customBtn2" type="button" class="customGPlusSignIn" style="text-align:center">Revoke</button>  
+			</div>
+		</div>
+	</div>
+	<div id="mainContainer" class= "container">
+		<div class="row" style="height:60px"></div> <!--HARDCODED ROW height here LOL-->
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div id="remItime" class="col-md-4" style="text-align:center">
 				<button id="removeCalendarButton" type="button">CalendarRemoveTest</button>
 			</div>  
 		</div>
 		<div class="row">
-			<div id="prev" class="col-sm-4">
+			<div id="prevWrap" class="col-sm-4">
 				<button id="prev" type="button" class="btn btn-info btn-block">prev</button> 
 			</div>
-			<div id="info1" class="col-sm-2" align="center" style="background-color:lightgray"></div>
-			<div id="info2" class="col-sm-2" align="center" style="background-color:lightgray"></div>
-			<div id="next" class="col-sm-4">
+			<div id="info1" class="col-sm-2"></div>
+			<div id="info2" class="col-sm-2"></div>
+			<div id="nextWrap" class="col-sm-4">
 				<button id="next" type="button" class="btn btn-info btn-block">next</button> 
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-4"></div>
-			<div id="totsum" class="col-md-4" align="center" style="background-color:lightblue"></div>
+			<div id="totsum" class="col-md-4" style="text-align:center background-color:lightblue"></div>
 		</div>
 		<canvas id="canvas" height="450" width="450"></canvas>
 	</div>
