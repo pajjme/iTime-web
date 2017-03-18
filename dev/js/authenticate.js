@@ -12,7 +12,6 @@ let startApp = function() {
 			{}, //OPTIONS
 			function() {auth2.grantOfflineAccess().then(function(resp) {
 				console.log(resp.code);
-				document.getElementById('mainContainer').style.visibility = "visible"
 				startAppHtmlElementManager.swapVisibility(0,1,"hidden","visible");
 				//document.getElementById('remItime').style.visibility = "visible"
 				let dataToBeSent = {auth_code: resp.code}
@@ -30,6 +29,11 @@ let startApp = function() {
 					else{
 						console.log("account already exists")
 					}
+					document.getElementById('mainContainer').style.visibility = "visible"
+					displayChart();//testing
+					//REAL CODE:
+					/*let d = new date();
+					updatePieChart(moveDate(7,-1, d).toISOString().substring(0,10),d.toISOString().substring(0,10))*/
 				});
 			})}, 
 			function(error) {window.alert(0)}
