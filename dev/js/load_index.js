@@ -1,12 +1,8 @@
 window.onload = function() {
-
 	startApp();
-	displayChart();
 	document.getElementById("info1").innerHTML = currentStartDate.toISOString().substring(0,10);
 	document.getElementById("info2").innerHTML = currentEndDate.toISOString().substring(0,10);
 	document.getElementById("totsum").innerHTML = 9000;
-
-
 };
 
 function displayChart() {
