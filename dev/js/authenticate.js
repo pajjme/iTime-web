@@ -1,6 +1,6 @@
 let startApp = function() {
 	let startAppHttpCommunicator = new httpCommunicator();
-	let startAppHtmlElementManager = new htmlElementStyleManager(document.getElementById('customBtn'),	document.getElementById("customBtn2"));
+	let startAppHtmlElementManager = new htmlElementStyleManager(document.getElementById('loginbutton'),	document.getElementById("logoutbutton"));
 	gapi.load('auth2', function(){
 		auth2 = gapi.auth2.init({
 			client_id: '856845744679-fr7uheupsjm65udbao75b6no8vjl8cm0.apps.googleusercontent.com',
@@ -8,12 +8,11 @@ let startApp = function() {
 			scope: 'https://www.googleapis.com/auth/calendar'
 		});
 		auth2.attachClickHandler(
-			document.getElementById('customBtn'), //what document element is the click attached to
+			document.getElementById('loginbutton'), //what document element is the click attached to
 			{}, //OPTIONS
 			function() {auth2.grantOfflineAccess().then(function(resp) {
 				console.log(resp.code);
 				startAppHtmlElementManager.swapVisibility(0,1,"hidden","visible");
-				//document.getElementById('remItime').style.visibility = "visible"
 				let dataToBeSent = {auth_code: resp.code}
 				startAppHttpCommunicator.communicateWithServer("http://127.0.0.1:5000/login",dataToBeSent,"POST").then(function(resp){
 					if(resp == 1){
@@ -40,7 +39,7 @@ let startApp = function() {
 		);
 
 	//Revokes the authentication with the google api.
-		document.getElementById('customBtn2').addEventListener("click", function() {
+		document.getElementById('logoutbutton').addEventListener("click", function() {
 			auth2.disconnect()
 			startAppHtmlElementManager.swapVisibility(0,1,"visible","hidden")
 			document.getElementById('mainContainer').style.visibility = "hidden"
