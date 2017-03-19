@@ -22,13 +22,13 @@
 <body>
 
 	<!--<nav id="nav">
-	 	<div class="container">
+		<div class="container">
 			<ul class="navlinks">
-			 	<li><a href="index.html">Homepage</a></li>
-			 	<li><a href="index.html">About Us</a></li>
-			 	<li><a href="index.html">Projects</a></li>
-			 	<li><a href="index.html">The Team</a></li>
-			 	<li><a href="index.html">Contacts</a></li>
+				<li><a href="index.html">Homepage</a></li>
+				<li><a href="index.html">About Us</a></li>
+				<li><a href="index.html">Projects</a></li>
+				<li><a href="index.html">The Team</a></li>
+				<li><a href="index.html">Contacts</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -65,6 +65,42 @@
 		<div class="row">
 			<div class="col-md-4"></div>
 			<div id="totsum" class="col-md-4" style="text-align:center background-color:lightblue"></div>
+		</div>
+		<div id="addEventContainer">
+			<form id="addEventForm">
+				<div class="form-group">
+					<label for="nameInput">Event name</label>
+					<input type="text" class="form-control" id="nameInput" aria-describedby="nameHelp" placeholder="Event name">
+					<small id="nameHelp" class="form-text text-muted">Enter the name of your new event here</small>
+				</div>
+				<div class="form-group">
+					<label for="date">Date of event</label>
+					<input type="text" class="form-control" id="date" aria-describedby="dateHelp" placeholder="date">
+					<small id="dateHelp" class="form-text text-muted">In the form DDMMYYYY</small>
+				</div>
+				<div class="form-group">
+					<label for="startTime">Start time</label>
+					<input type="text" class="form-control" id="startTime" aria-describedby="stimeHelp" placeholder="Start time">
+					<small id="stimeHelp" class="form-text text-muted">In the form HHMM</small>
+				</div>
+				<div class="form-group">
+					<label for="endTime">End Time</label>
+					<input type="text" class="form-control" id="endTime" aria-describedby="etimeHelp" placeholder="End time">
+					<small id="etimeHelp" class="form-text text-muted">In the form HHMM</small>
+				</div>
+				<div class="form-group">
+					<label for="selectPreDefType">Select type of event</label>
+					<select class="form-control" id="selectPreDefType" aria-describedby="typeHelp">
+						<option>School work</option>
+						<option>Hacking</option>
+						<option>Drinking</option>
+						<option>Netflix and chill</option>
+						<option>Other</option>
+					</select>
+					<small id="typeHelp" class="form-text text-muted">Pick a desired type from the above list or 'other'</small>
+				</div>
+				<button id="addEvent" type="button" class="btn btn-info btn-block">Add event</button> 
+			</form>
 		</div>
 		<canvas id="canvas" height="450" width="450"></canvas>
 	</div>

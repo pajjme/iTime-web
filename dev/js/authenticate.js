@@ -1,4 +1,5 @@
 let startApp = function() {
+	let calId;
 	let startAppHttpCommunicator = new httpCommunicator();
 	let startAppHtmlElementManager = new htmlElementStyleManager(document.getElementById('loginbutton'),	document.getElementById("logoutbutton"));
 	gapi.load('auth2', function(){
@@ -22,6 +23,8 @@ let startApp = function() {
     						});     
     						request.execute(function(resp) {
       							console.log("new account created")
+      							calId = resp.id;
+      							console.log(resp.id);
     						});
   						});	
 					}
@@ -71,6 +74,49 @@ let startApp = function() {
 		});
 	});
 
+
+
+//adds elements to a the calendar.
+
+	document.getElementById('addEvent').addEventListener("click", function() {
+		let frm = document.getElementById('addEventForm');
+
+		let year = frm.elements[1].value.substring(4,8);
+		let month = parseInt(frm.elements[1].value.substring(2,4))-1; //Horrible datehack here as well. :)
+		let day = frm.elements[1].value.substring(0,2);
+		let sDate = new Date(year,month,day,parseInt(frm.elements[2].value.substring(0,2)),parseInt(frm.elements[2].value.substring(2,4)));
+		let eDate = new Date(year,month,day,parseInt(frm.elements[3].value.substring(0,2)),parseInt(frm.elements[3].value.substring(2,4)));
+		sDate = sDate.toISOString();
+		eDate = eDate.toISOString();
+
+		let event = {
+			"summary" :frm.elements[0].value,
+			"description" : '#'+frm.elements[4].value,
+			"start" : {
+				"dateTime" : sDate,
+				"timeZone" : "Europe/Stockholm"
+			},
+			"end" : {
+				"dateTime" : eDate,
+				"timeZone" : "Europe/Stockholm"
+			}
+		}
+
+		gapi.client.load('calendar', 'v3', function() {
+			let request = gapi.client.calendar.events.insert({
+				'calendarId' : calId,
+				'resource' : event
+			});
+			request.execute(function(resp){
+				console.log("event inserted");
+			})
+		})
+		for (var i = 0; i < frm.length-1; i++) {
+			frm.elements[i].value = "";
+		}
+
+	})
+
 	/*Gets (hopefully, not tested with BE) user data from the week before the currently selected week and changes the currently
 	selected week to the previous week.*/
 
@@ -96,6 +142,7 @@ let startApp = function() {
 			document.getElementById('next').style.visibility = "visible";
 		}
 	})
+
 
 	/*Gets (hopefully, not tested with BE) user data from the week after the currently selected week and changes the currently
 	selected week to the next week.*/
