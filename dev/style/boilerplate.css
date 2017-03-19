@@ -44,7 +44,7 @@ p{
 	}
 
 
-#customBtn {
+#loginbutton {
 		color: #444;
 		width: 100%;
 		height: 55px;
@@ -56,7 +56,7 @@ p{
 		right:0;
 		left:0;
 	}
-	#customBtn:hover {
+	#loginbutton:hover {
 		cursor: pointer;
 	}
 	span.label {
@@ -96,7 +96,7 @@ p{
 }
 
 
-#customBtn2 {
+#logoutbutton {
 		background: white;
 		color: #444;
 		width: 100%;
