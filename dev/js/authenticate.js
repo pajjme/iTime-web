@@ -80,15 +80,9 @@ let startApp = function() {
 
 	document.getElementById('addEvent').addEventListener("click", function() {
 		let frm = document.getElementById('addEventForm');
-		for (var i = 0; i < frm.length; i++) {
-			console.log(frm.elements[i].value);
-		}
 		let year = parseInt(frm.elements[1].value.substring(0,4));
 		let month = parseInt(frm.elements[1].value.substring(5,7))-1; //Horrible datehack here as well. :)
 		let day = parseInt(frm.elements[1].value.substring(8,10));
-		console.log(year)
-		console.log(month)
-		console.log(day)
 		let sDate = new Date(year,month,day,parseInt(frm.elements[2].value.substring(0,2)),parseInt(frm.elements[2].value.substring(3,5)));
 		let eDate = new Date(year,month,day,parseInt(frm.elements[3].value.substring(0,2)),parseInt(frm.elements[3].value.substring(3,5)));
 		sDate = sDate.toISOString();
