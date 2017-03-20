@@ -57,6 +57,7 @@
 		</div>
 		<div id="addEventContainer">
 			<form id="addEventForm">
+
 				<div class="form-group">
 					<label for="nameInput">Event name</label>
 					<input type="text" class="form-control" id="nameInput" aria-describedby="nameHelp" placeholder="Event name">
@@ -64,19 +65,22 @@
 				</div>
 				<div class="form-group">
 					<label for="date">Date of event</label>
-					<input type="text" class="form-control" id="date" aria-describedby="dateHelp" placeholder="date">
-					<small id="dateHelp" class="form-text text-muted">In the form DDMMYYYY</small>
+					<input type="date" class="form-control" id="date" aria-describedby="dateHelp">
+					<small id="dateHelp" class="date">Input date of event</small>
 				</div>
+
 				<div class="form-group">
 					<label for="startTime">Start time</label>
-					<input type="text" class="form-control" id="startTime" aria-describedby="stimeHelp" placeholder="Start time">
-					<small id="stimeHelp" class="form-text text-muted">In the form HHMM</small>
+					<input type="time" class="form-control" id="startTime" aria-describedby="stimeHelp">
+					<small id="stimeHelp" class="form-text text-muted">Input starting time of event</small>
 				</div>
+
 				<div class="form-group">
 					<label for="endTime">End Time</label>
-					<input type="text" class="form-control" id="endTime" aria-describedby="etimeHelp" placeholder="End time">
-					<small id="etimeHelp" class="form-text text-muted">In the form HHMM</small>
+					<input type="time" class="form-control" id="endTime" aria-describedby="etimeHelp">
+					<small id="etimeHelp" class="form-text text-muted">Input ending time of event</small>
 				</div>
+
 				<div class="form-group">
 					<label for="selectPreDefType">Select type of event</label>
 					<select class="form-control" id="selectPreDefType" aria-describedby="typeHelp">
