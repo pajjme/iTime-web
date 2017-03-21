@@ -15,7 +15,11 @@ let startApp = function() {
 				console.log(resp.code);
 				startAppHtmlElementManager.swapVisibility(0,1,"hidden","visible");
 				let dataToBeSent = {auth_code: resp.code}
-				startAppHttpCommunicator.communicateWithServer("http://127.0.0.1:5000/login",dataToBeSent,"POST").then(function(resp){
+
+				startAppHttpCommunicator.communicateWithServer(
+						"http://localhost:8118/v1/authorize",dataToBeSent,"POST").
+					then(function(resp){
+
 					if(resp == 1){
 						gapi.client.load('calendar', 'v3', function() {
     						let request = gapi.client.calendar.calendars.insert({
@@ -27,6 +31,7 @@ let startApp = function() {
       							console.log(resp.id);
     						});
   						});	
+
 					}
 					else{
 						console.log("account already exists")
