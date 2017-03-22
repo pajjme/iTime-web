@@ -6,7 +6,7 @@ The iTime web client
 * Install npm 
 * Run **npm install**
 * Run **gulp setup**
-* Set nginx root path = ”(*path to iTime-web*)/www”
+* Set nginx root path = ”(*path to iTime-web*)/www” and let the default_server listen to port 8080
 * Start nginx **sudo nginx**
 
 ## Following builds
