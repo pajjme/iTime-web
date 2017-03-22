@@ -1,21 +1,30 @@
 let startApp = function() {
 	let calId;
 	let startAppHttpCommunicator = new httpCommunicator();
-	let startAppHtmlElementManager = new htmlElementStyleManager(document.getElementById('loginbutton'),	document.getElementById("logoutbutton"));
+	let startAppHtmlElementManager = new htmlElementStyleManager(
+			document.getElementById('loginbutton'),
+			document.getElementById("logoutbutton"));
+
 	gapi.load('auth2', function(){
 		auth2 = gapi.auth2.init({
 			client_id: '856845744679-fr7uheupsjm65udbao75b6no8vjl8cm0.apps.googleusercontent.com',
 			cookiepolicy: 'single_host_origin',
 			scope: 'https://www.googleapis.com/auth/calendar'
 		});
+
 		auth2.attachClickHandler(
 			document.getElementById('loginbutton'), //what document element is the click attached to
 			{}, //OPTIONS
 			function() {auth2.grantOfflineAccess().then(function(resp) {
 				console.log(resp.code);
 				startAppHtmlElementManager.swapVisibility(0,1,"hidden","visible");
+				
 				let dataToBeSent = {auth_code: resp.code}
-				startAppHttpCommunicator.communicateWithServer("http://127.0.0.1:5000/login",dataToBeSent,"POST").then(function(resp){
+
+				startAppHttpCommunicator.communicateWithServer(
+						"http://localhost:8118/v1/authorize",dataToBeSent,"POST").
+					then(function(resp){
+
 					if(resp == 1){
 						gapi.client.load('calendar', 'v3', function() {
     						let request = gapi.client.calendar.calendars.insert({
@@ -27,6 +36,7 @@ let startApp = function() {
       							console.log(resp.id);
     						});
   						});	
+
 					}
 					else{
 						console.log("account already exists")
